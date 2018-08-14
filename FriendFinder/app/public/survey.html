@@ -13,7 +13,7 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css" type="text/css">
-   
+
     <title>Survey</title>
 </head>
 
@@ -45,7 +45,7 @@
                 <label for="exampleFormControlSelect1">Question 1</label>
                 <p>Your mind is always buzzing with unexplored ideas and plans.</p>
                 <select class="form-control" id="q1">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -59,7 +59,7 @@
                 <label for="exampleFormControlSelect1">Question 2</label>
                 <p>Generally speaking, you rely more on your experience than your imagination.</p>
                 <select class="form-control" id="q2">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -73,7 +73,7 @@
                 <label for="exampleFormControlSelect1">Question 3</label>
                 <p>You find it easy to stay relaxed and focused even when there is some pressure.</p>
                 <select class="form-control" id="q3">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -87,7 +87,7 @@
                 <label for="exampleFormControlSelect1">Question 4</label>
                 <p>You rarely do something just out of sheer curiosity.</p>
                 <select class="form-control" id="q4">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -100,7 +100,7 @@
                 <label for="exampleFormControlSelect1">Question 5</label>
                 <p>People can rarely upset you.</p>
                 <select class="form-control" id="q5">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -114,7 +114,7 @@
                 <label for="exampleFormControlSelect1">Question 6</label>
                 <p>It is often difficult for you to relate to other people’s feelings.</p>
                 <select class="form-control" id="q6">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -128,7 +128,7 @@
                 <label for="exampleFormControlSelect1">Question 7</label>
                 <p>In a discussion, truth should be more important than people’s sensitivities.</p>
                 <select class="form-control" id="q7">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -142,7 +142,7 @@
                 <label for="exampleFormControlSelect1">Question 8</label>
                 <p>You rarely get carried away by fantasies and ideas.</p>
                 <select class="form-control" id="q8">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -159,7 +159,7 @@
                     not.
                 </p>
                 <select class="form-control" id="q9">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -173,7 +173,7 @@
                 <label for="exampleFormControlSelect1">Question 10</label>
                 <p>You feel more energetic after spending time with a group of people.</p>
                 <select class="form-control" id="q10">
-                    <option value="">chosen-select</option>
+                    <option value="0">chosen-select</option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -184,7 +184,7 @@
         </form>
 
         <!-- Button trigger modal -->
-        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit" data-toggle="modal" data-target="#results-modal">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
             <i class="fa fa-check-circle" aria-hidden="true"></i>
             Submit</button>
 
@@ -194,6 +194,7 @@
             <div class="container">
                 <p>
                     <a href="/api/friends">API Friends List</a> |
+                    <a href="/api/clear" id="clear">clear API List</a> |
                     <a href="https://github.com/Kevinwei0619/Friend-Finder_Node-and-Express-Servers">GitHub Repo</a>
                 </p>
             </div>
@@ -215,7 +216,7 @@
                 </div>
                 <div class="modal-body">
                     <h2 id="match-name">KKK</h2>
-                    <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+                    <img id="match-img" src="*" alt="">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -223,6 +224,164 @@
             </div>
         </div>
     </div>
+
+
+
+    <script>
+        var numberList = [];
+        var totalDifference = 10000;
+        // var amount = 0;
+        var count = 0;
+
+        var matchName;
+        var matchURL;
+
+
+        $("#submit").on("click", function (a) {
+
+            a.preventDefault();
+            var newName = $("#name").val().trim();
+            var newPhoto = $("#photo").val().trim();
+
+
+
+
+            for (var i = 1; i < 11; i++) {
+                if ($("#q" + i).val() == "0") {
+                    // alert("you need to answer " + i + " Question");
+                } else {
+
+                    var number = $("#q" + i).val();
+                    console.log(typeof (parseInt(number)))
+                    numberList.push(parseInt(number));
+                }
+            };
+
+
+            if (newName == "" || newPhoto == "" || numberList.length < 10) {
+                alert("not finishing yet");
+
+                // console.log("numberList : ", numberList);
+                // console.log("long: ", numberList.length);
+
+            } else {
+
+                getData();
+
+                var newData = {
+                    name: newName,
+                    photo: newPhoto,
+                    scores: numberList
+                };
+                console.log("newData ", newData);
+
+
+                $.post('/api/friends', newData, function (response) {
+
+                    console.log("response ", response);
+
+                    if (response) {
+                        console.log("got it");
+
+                        $("#match-img").attr({
+                            width: "150px",
+                            height: "150px",
+                            src: matchURL
+                        });
+                        $("#match-name").html("<h4>" + matchName + "</h4>")
+
+
+                        console.log(matchURL);
+                        console.log(matchName);
+
+                        $("#name").val("");
+                        $("#photo").val("");
+                        for (var i = 1; i < 11; i++) {
+                            $("#q" + i).val("0");
+                        };
+
+
+                        $("#submit").attr({
+                            'data-toggle': "modal",
+                            'data-target': "#results-modal"
+                        });
+
+                    } else {
+                        console.log("no data added");
+                    }
+
+                });
+            };
+
+        });
+
+
+
+        // $.post('/api/friends', data).then(response => {
+        //     $("#match-img").attr('src', matchURL);
+        //     $("#match-name").text(matchName)
+        // });
+
+
+
+        function getData() {
+
+
+            $.get("/api/friends", function (dataList) {
+
+                console.log("from server: ", dataList);
+
+                for (var j = 0; j < dataList.length; j++) {
+                    console.log("get dataList.length : ", dataList.length)
+                    amount = 0;
+                    for (var k = 0; k < 10; k++) {
+                        console.log("data number ", parseInt(dataList[j].scores[k]));
+                        console.log("input number: ", parseInt(numberList[k]));
+                        amount = amount + Math.abs(parseInt(dataList[j].scores[k]) - parseInt(numberList[k]));
+                        console.log("amount : ", amount);
+                    }
+                    if (totalDifference > amount) {
+                        totalDifference = amount;
+                        count = j;
+                        console.log("totalDifference : ", totalDifference);
+                        console.log("count : ", count)
+                    }
+                }
+
+                matchName = dataList[count].name;
+                matchURL = dataList[count].photo;
+
+                console.log("totalDifference : ", totalDifference);
+                console.log("count : ", count)
+
+
+            });
+
+
+
+
+        }
+
+
+        function clearTable() {
+
+            var currentURL = window.location.origin;
+            $.ajax({
+                url: currentURL + "/api/clear",
+                method: "POST"
+            });
+
+        }
+
+        $("#clear").on("click", function () {
+            alert("Clearing...");
+            clearTable();
+
+            // Refresh the page after data is cleared
+            location.reload();
+
+        });
+    </script>
 
 </body>
 
