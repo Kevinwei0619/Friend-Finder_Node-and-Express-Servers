@@ -31,10 +31,10 @@ module.exports = function (app) {
 
     });
 
-    app.post("/api/clear" , function(){
-        data = [];
+    app.post("/api/clear" , function(req , res){
+        return res.json(data);
         console.log(data);
     });
 
-    
+    return app;
 };

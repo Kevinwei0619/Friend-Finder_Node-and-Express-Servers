@@ -5,7 +5,6 @@ var peopleList = require("./app/data/friends.js");
 var htmlRoutes = require("./app/routing/htmlRoutes.js");
 var apiRoutes = require("./app/routing/apiRoutes.js");
 
-// console.log(peopleList);
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -24,30 +23,30 @@ app.use(bodyParser.json());
 
 
 
-app.get('/api/friends', function (req, res) {
-    res.json(peopleList);
-});
+// app.get('/api/friends', function (req, res) {
+//     res.json(peopleList);
+// });
 
 
-app.post("/api/friends", function (req, res) {
-    if (req.body) {
-        var userInput = req.body;
-        console.log(userInput);
-        peopleList.push(userInput);
+// app.post("/api/friends", function (req, res) {
+//     if (req.body) {
+//         var userInput = req.body;
+//         console.log(userInput);
+//         peopleList.push(userInput);
 
-        // res.json({
-        //     success: true
-        // });
-         res.json(true);
-    } else {
-         res.json(false);
-    }
+//         // res.json({
+//         //     success: true
+//         // });
+//          res.json(true);
+//     } else {
+//          res.json(false);
+//     }
 
-});
+// });
 
 
+apiRoutes(app);
 htmlRoutes(app);
-// apiRoutes(app);
 // require("./app/routing/apiRoutes.js")(app);
 
 

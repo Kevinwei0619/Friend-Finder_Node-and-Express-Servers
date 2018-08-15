@@ -194,7 +194,7 @@
             <div class="container">
                 <p>
                     <a href="/api/friends">API Friends List</a> |
-                    <a href="/api/clear" id="clear">clear API List</a> |
+                    <!-- <a href="/api/clear" id="clear">clear API List</a> | -->
                     <a href="https://github.com/Kevinwei0619/Friend-Finder_Node-and-Express-Servers">GitHub Repo</a>
                 </p>
             </div>
@@ -228,13 +228,12 @@
 
 
     <script>
-        var numberList = [];
+        
         var totalDifference = 10000;
-        // var amount = 0;
         var count = 0;
-
         var matchName;
         var matchURL;
+        var numberList = [];
 
 
         $("#submit").on("click", function (a) {
@@ -242,10 +241,7 @@
             a.preventDefault();
             var newName = $("#name").val().trim();
             var newPhoto = $("#photo").val().trim();
-
-
-
-
+            
             for (var i = 1; i < 11; i++) {
                 if ($("#q" + i).val() == "0") {
                     // alert("you need to answer " + i + " Question");
@@ -296,20 +292,24 @@
 
                         $("#name").val("");
                         $("#photo").val("");
+                        numberList=[];
+                        totalDifference=10000;
+                        count=0;
+                        console.log(numberList);
                         for (var i = 1; i < 11; i++) {
                             $("#q" + i).val("0");
+                      
                         };
 
+                         $("#results-modal").modal("toggle")
 
-                        $("#submit").attr({
-                            'data-toggle': "modal",
-                            'data-target': "#results-modal"
-                        });
 
                     } else {
                         console.log("no data added");
                     }
 
+
+                    
                 });
             };
 
@@ -367,7 +367,7 @@
 
             var currentURL = window.location.origin;
             $.ajax({
-                url: currentURL + "/api/clear",
+                url:"/api/clear",
                 method: "POST"
             });
 
